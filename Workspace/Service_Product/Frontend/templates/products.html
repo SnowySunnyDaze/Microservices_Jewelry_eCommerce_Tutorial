@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    async function displayProducts() {
+        const response = await fetch('http://localhost:8001/api/v1/products');
+        const products = await response.json();
+
+        document.body.innerHTML = products.map(product => {
+            return `
+                <div>
+                    <h2>Name: ${product.name}</h2>
+                    <p>Price: ${product.price}</p>
+                    <p>Quantity: ${product.quantity}</p>
+                </div>
+            `;
+        }).join('');
+    }
+
+    displayProducts();
+</script>
+</body>
+</html>
